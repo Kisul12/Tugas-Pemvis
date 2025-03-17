@@ -3,7 +3,6 @@ from PyQt6.QtWidgets import (
     QLabel, QLineEdit, QRadioButton, QPushButton, QComboBox, QGroupBox
 )
 import sys
-
 class RegistrationForm(QWidget):
     def __init__(self):
         super().__init__()
@@ -18,7 +17,7 @@ class RegistrationForm(QWidget):
         identity_layout = QVBoxLayout()
         identity_layout.addWidget(QLabel("Nama : Muhammad Rizki Assamsuli"))
         identity_layout.addWidget(QLabel("NIM : F1D022146"))
-        identity_layout.addWidget(QLabel("Kelas : B"))
+        identity_layout.addWidget(QLabel("Kelas : C"))
         identity_group.setLayout(identity_layout)
         
         nav_group = QGroupBox("Navigation (horizontal box layout)")
