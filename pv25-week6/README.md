@@ -42,4 +42,4 @@ Membuat antarmuka interaktif dengan komponen PyQt5 seperti:
 
 ## 📷 Hasil Run Aplikasi
 
-![Hasil Run](resultProgram.png)
+![Hasil Run](resultProgram1.png)
