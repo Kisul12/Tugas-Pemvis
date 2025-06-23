@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>LoginWidget</class>
+ <widget class="QWidget" name="LoginWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+
+  <layout class="QVBoxLayout" name="mainVerticalLayout">
+   <item>
+    <spacer name="verticalSpacerTop">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacerLeft">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+
+     <item>
+      <layout class="QVBoxLayout" name="formLayout">
+       <!-- Tambahkan margins dan spacing di sini -->
+       <property name="spacing">
+        <number>15</number>
+       </property>
+       <property name="leftMargin">
+        <number>10</number>
+       </property>
+       <property name="topMargin">
+        <number>10</number>
+       </property>
+       <property name="rightMargin">
+        <number>10</number>
+       </property>
+       <property name="bottomMargin">
+        <number>10</number>
+       </property>
+
+       <item>
+        <widget class="QLabel" name="titleLabel">
+         <property name="text">
+          <string>Login ke SadarKulit</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-size: 18px; font-weight: bold; margin-bottom: 10px;</string>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <widget class="QLineEdit" name="emailInput">
+         <property name="placeholderText">
+          <string>Masukkan email Anda</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+            QLineEdit {
+              padding: 8px;
+              font-size: 14px;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+            }
+          </string>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <widget class="QLineEdit" name="passwordInput">
+         <property name="placeholderText">
+          <string>Masukkan password</string>
+         </property>
+         <property name="echoMode">
+          <enum>QLineEdit::Password</enum>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+            QLineEdit {
+              padding: 8px;
+              font-size: 14px;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+            }
+          </string>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <widget class="QPushButton" name="loginButton">
+         <property name="text">
+          <string>Login</string>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+            QPushButton {
+              background-color: #2e86de;
+              color: white;
+              padding: 10px;
+              font-weight: bold;
+              border-radius: 5px;
+            }
+            QPushButton:hover {
+              background-color: #1b4f72;
+            }
+          </string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+
+     <item>
+      <spacer name="horizontalSpacerRight">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+
+   <item>
+    <spacer name="verticalSpacerBottom">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
