@@ -1,5 +1,3 @@
-# File: main.py
-
 import sys
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QWidget, QStackedWidget, QStatusBar,
@@ -7,10 +5,8 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtGui import QFont, QFontDatabase
 from PyQt5.QtCore import Qt
-
 from login_widget import LoginWidget
 from dashboard_widget import DashboardWidget
-
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -134,8 +130,7 @@ class MainWindow(QMainWindow):
 
     def show_dashboard(self, token, user_data):
         nama_mahasiswa = "Muhammad Rizki Assamsuli | F1D022146"
-        user_name = user_data.get("name", "User")
-        self.statusBar().showMessage(f"Project oleh: {nama_mahasiswa} | Login sebagai: {user_name}")
+        self.statusBar().showMessage(f" {nama_mahasiswa}")
 
         self.dashboard_page.set_token_and_load_data(token)
 

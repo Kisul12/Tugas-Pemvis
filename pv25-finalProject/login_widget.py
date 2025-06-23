@@ -2,19 +2,21 @@ import requests
 from PyQt5.QtWidgets import QWidget, QMessageBox
 from PyQt5.uic import loadUi
 from PyQt5.QtCore import pyqtSignal
+from PyQt5.QtGui import QPixmap
 
 API_URL = "http://localhost:3000"
 
 class LoginWidget(QWidget):
-    """
-    Widget halaman login, menggunakan desain dari Qt Designer.
-    Emit signal login_successful(token, user_data) jika login berhasil.
-    """
     login_successful = pyqtSignal(str, dict)
 
     def __init__(self, parent=None):
         super().__init__(parent)
         loadUi("ui/login_widget.ui", self)  # Pastikan path benar
+
+         # Tampilkan logo dari file
+        pixmap = QPixmap("assets/images/logo.png")
+        self.logoLabel.setPixmap(pixmap.scaled(200, 200, aspectRatioMode=1))  # 100x100 dan preserve rasio
+        self.logoLabel.setStyleSheet("margin-bottom: 10px;")
 
         # Event binding
         self.loginButton.clicked.connect(self.attempt_login)

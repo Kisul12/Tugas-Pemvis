@@ -6,10 +6,10 @@ import re
 from datetime import datetime, timezone, timedelta
 
 from PyQt5.QtWidgets import (
-    QApplication, QWidget, QTableWidget, QTableWidgetItem, QPushButton,
-    QVBoxLayout, QHeaderView, QFileDialog, QMessageBox, QLabel
+    QWidget, QTableWidgetItem, QFileDialog, QMessageBox, QApplication,
+    QTableWidget, QPushButton
 )
-from PyQt5.QtCore import Qt
+from PyQt5 import uic
 
 API_URL = "http://localhost:3000"
 
@@ -23,39 +23,22 @@ def bersihkan_nama_penyakit(nama):
 class DashboardWidget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
+        uic.loadUi("ui/dashboard.ui", self)  # Muat file UI
+
+        # Temukan elemen UI berdasarkan objectName
+        self.history_table: QTableWidget = self.findChild(QTableWidget, "historyTable")
+        self.predict_button: QPushButton = self.findChild(QPushButton, "predictButton")
+
         self.auth_token = None
         self.api_headers = {}
         self.history_data = []
-        self.init_ui()
 
-    def init_ui(self):
-        layout = QVBoxLayout(self)
-        layout.setContentsMargins(20, 20, 20, 20)
-        layout.setSpacing(15)
-
-        title = QLabel("Riwayat Prediksi Penyakit Kulit")
-        title.setStyleSheet("font-size: 20px; font-weight: bold;")
-        layout.addWidget(title)
-
-        self.history_table = QTableWidget()
-        self.history_table.setMinimumHeight(300)
-        self.history_table.setEditTriggers(QTableWidget.NoEditTriggers)
-        self.history_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        # Konfigurasi tabel
+        self.history_table.setEditTriggers(self.history_table.NoEditTriggers)
         self.history_table.setSortingEnabled(True)
+        self.history_table.horizontalHeader().setStretchLastSection(True)
 
-        self.predict_button = QPushButton("🩺 Lakukan Prediksi Baru")
-        self.predict_button.setStyleSheet("""
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            font-weight: bold;
-            border-radius: 5px;
-        """)
-
-        layout.addWidget(self.history_table)
-        layout.addWidget(self.predict_button)
-
-        self.setLayout(layout)
+        # Hubungkan aksi tombol prediksi
         self.predict_button.clicked.connect(self.open_predict_dialog)
 
     def set_token_and_load_data(self, token):
@@ -63,13 +46,13 @@ class DashboardWidget(QWidget):
         self.api_headers = {'Authorization': f'Bearer {self.auth_token}'}
         self.load_history()
 
+    # Load History 
     def load_history(self):
         try:
             response = requests.get(f"{API_URL}/history", headers=self.api_headers)
             response.raise_for_status()
             self.history_data = response.json()
 
-            # Debug print
             print("=== DATA YANG DITERIMA DARI BACKEND ===")
             for item in self.history_data:
                 print(item)
@@ -79,6 +62,7 @@ class DashboardWidget(QWidget):
         except requests.exceptions.RequestException as e:
             QMessageBox.critical(self, 'Error', f"Gagal memuat riwayat:\n{e}")
 
+    # Populate Table
     def populate_table(self):
         if not self.history_data:
             self.history_table.setRowCount(0)
@@ -116,6 +100,7 @@ class DashboardWidget(QWidget):
         if file_path:
             self.perform_prediction(file_path)
 
+    # Perform Prediction
     def perform_prediction(self, file_path):
         loading_msg = QMessageBox()
         loading_msg.setWindowTitle("Info")

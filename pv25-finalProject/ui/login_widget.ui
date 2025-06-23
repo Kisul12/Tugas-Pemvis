@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>400</height>
    </rect>
   </property>
 
@@ -44,7 +44,6 @@
 
      <item>
       <layout class="QVBoxLayout" name="formLayout">
-       <!-- Tambahkan margins dan spacing di sini -->
        <property name="spacing">
         <number>15</number>
        </property>
@@ -60,6 +59,21 @@
        <property name="bottomMargin">
         <number>10</number>
        </property>
+
+       <!-- Tambahkan logo -->
+       <item>
+        <widget class="QLabel" name="logoLabel">
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
+           <height>200</height>
+          </size>
+         </property>
+        </widget>
+       </item>
 
        <item>
         <widget class="QLabel" name="titleLabel">
