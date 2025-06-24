@@ -21,7 +21,7 @@ const PORT = process.env.PORT || 3000;
 // 1. Konfigurasi CORS
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://sadarkulit-fe.vercel.app' // Ganti jika URL frontend Anda berbeda
+  'https://sadarkulit-fe.vercel.app' 
 ];
 app.use(cors({
   origin: (origin, callback) => {
@@ -50,17 +50,15 @@ const upload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: 10 * 1024 * 1024 },
 
-  // --- MODIFIKASI BAGIAN INI UNTUK DEBUGGING ---
   fileFilter: (req, file, cb) => {
 
     // Cetak informasi yang diterima oleh multer ke terminal backend
     console.log(`--- DEBUGGING DI DALAM fileFilter ---`);
-    console.log(`MIME Type yang diterima oleh Multer: [${file.mimetype}]`); // Saya tambahkan kurung siku untuk melihat jika ada spasi aneh
+    console.log(`MIME Type yang diterima oleh Multer: [${file.mimetype}]`);
     console.log(`Originalname: ${file.originalname}`);
     console.log(`Apakah tipe ini diizinkan?`, ['image/jpeg', 'image/png', 'image/webp'].includes(file.mimetype));
     console.log(`-----------------------------------`);
 
-    // Logika asli Anda
     if (['image/jpeg', 'image/png', 'image/webp'].includes(file.mimetype)) {
       cb(null, true);
     } else {
@@ -79,7 +77,6 @@ app.use('/users', userRoutes);
 app.use('/history', historyRoutes);
 
 // Rute KHUSUS untuk prediksi yang memerlukan upload gambar
-// Middleware 'upload.single('image')' hanya diterapkan pada rute ini
 app.use('/predict', upload.single('image'), predictRoutes);
 
 // Rute default untuk health check
@@ -88,7 +85,7 @@ app.get('/', (req, res) => {
 });
 
 
-// --- PENANGANAN ERROR (diletakkan di akhir) ---
+// --- PENANGANAN ERROR ---
 
 // Handler untuk error dari Multer atau file filter
 app.use((err, req, res, next) => {
@@ -99,7 +96,7 @@ app.use((err, req, res, next) => {
     console.error('File filter error:', err.message);
     return res.status(400).json({ error: err.message });
   }
-  next(err); // Teruskan ke handler error lain jika bukan error Multer
+  next(err); 
 });
 
 // Handler untuk 404 Not Found (jika tidak ada rute yang cocok)

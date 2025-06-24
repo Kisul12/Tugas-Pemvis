@@ -16,14 +16,14 @@ API_URL = "http://localhost:3000"
 def bersihkan_nama_penyakit(nama):
     if not nama:
         return "Tidak diketahui"
-    nama = re.sub(r'^\d+\.\s*', '', nama)          # Hapus angka & titik di awal
-    nama = re.sub(r'\s*[-–]?\s*\d{3,}$', '', nama) # Hapus angka di akhir
+    nama = re.sub(r'^\d+\.\s*', '', nama)          
+    nama = re.sub(r'\s*[-–]?\s*\d{3,}$', '', nama) 
     return nama.strip()
 
 class DashboardWidget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        uic.loadUi("ui/dashboard.ui", self)  # Muat file UI
+        uic.loadUi("ui/dashboard.ui", self)  
 
         # Temukan elemen UI berdasarkan objectName
         self.history_table: QTableWidget = self.findChild(QTableWidget, "historyTable")

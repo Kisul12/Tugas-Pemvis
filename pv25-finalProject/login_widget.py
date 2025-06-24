@@ -11,11 +11,11 @@ class LoginWidget(QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        loadUi("ui/login_widget.ui", self)  # Pastikan path benar
+        loadUi("ui/login_widget.ui", self)  
 
-         # Tampilkan logo dari file
+        # logo
         pixmap = QPixmap("assets/images/logo.png")
-        self.logoLabel.setPixmap(pixmap.scaled(200, 200, aspectRatioMode=1))  # 100x100 dan preserve rasio
+        self.logoLabel.setPixmap(pixmap.scaled(200, 200, aspectRatioMode=1))  
         self.logoLabel.setStyleSheet("margin-bottom: 10px;")
 
         # Event binding
