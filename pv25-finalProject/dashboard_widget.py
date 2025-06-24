@@ -86,8 +86,8 @@ class DashboardWidget(QWidget):
                     value = bersihkan_nama_penyakit(value)
                 elif key == 'dateChecked' and value:
                     try:
-                        WIB = timezone(timedelta(hours=8))
-                        dt = datetime.fromisoformat(value.replace("Z", "+00:00")).astimezone(WIB)
+                        WITA = timezone(timedelta(hours=8))
+                        dt = datetime.fromisoformat(value.replace("Z", "+00:00")).astimezone(WITA)
                         value = dt.strftime('%d %B %Y, %H:%M')
                     except Exception:
                         pass
